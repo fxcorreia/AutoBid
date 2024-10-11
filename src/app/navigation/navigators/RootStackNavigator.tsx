@@ -20,14 +20,14 @@ const RootStackNavigator = () => {
         }}
       >
         <Drawer.Screen
-          name={"Dashboard"}
+          name={"DashboardStack"}
           component={DashboardStack}
           options={{
             drawerIcon: () => <CarLogo height={24} width={24}/>,
           }}
         />
         <Drawer.Screen
-          name={"Favourites"}
+          name={"FavouriteStack"}
           component={FavouritesStack}
           options={{
             drawerIcon: () => <IconFavouriteFullColored />,

@@ -1,0 +1,22 @@
+{
+    "en": {
+      "app": {
+        "app_name":"AUTOBID",
+        "screens": {
+          "dashboard":{
+            "bid_start":"Starting Bid"
+          },
+          "vehicleDetails":{
+            "year":"Year",
+            "mileage":"Mileage",
+            "auction_date":"Auction date",
+            "bid_start":"Starting bid",
+            "fuel":"Fuel",
+            "engine":"Engine",
+            "lorem_ipsum":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus justo enim, luctus sit amet tincidunt id, scelerisque vitae nisl. In pulvinar efficitur lorem. Ut pellentesque varius maximus. Aliquam erat volutpat. Integer fermentum ut ex ut molestie. Sed vehicula ullamcorper mi, vel rhoncus ligula luctus eget. Aenean facilisis tincidunt lectus ut rutrum. Quisque ipsum ex, dictum ut pulvinar vel, molestie at metus. Duis nec dignissim magna. Maecenas fringilla, felis eget scelerisque varius, augue sem pretium erat, id luctus dui est a diam. \n\nDuis scelerisque ullamcorper euismod. Praesent ornare ultricies metus. Nam vel rutrum nisi. Nunc tempor porttitor diam, eget hendrerit mauris imperdiet a. Integer vel molestie enim. Praesent ut tempus lorem. Vivamus accumsan mauris justo, a commodo augue aliquam sed.\n\nPellentesque eu libero in dolor aliquam dignissim. Mauris efficitur, orci et malesuada efficitur, est leo finibus leo, a consequat nisl leo sit amet odio. Proin mattis dolor nulla. Curabitur non ante urna. Nam nec mauris metus. Aenean at arcu ante. Aliquam erat volutpat. Aenean lobortis ac justo sodales viverra. Maecenas sollicitudin malesuada urna a ornare. Pellentesque pellentesque commodo vestibulum."
+          }
+        }
+      }
+    }
+  }
+  

@@ -5,6 +5,7 @@ import { IconFavouriteEmpty, IconFavouriteFull } from '@assets/svg'
 import { VehicleModel } from '@data/model/VehicleModel'
 import _ from 'lodash'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 type Props = {
@@ -15,7 +16,7 @@ type Props = {
 }
 const RANDOM_CAR_URL = 'https://loremflickr.com/240/180/car'
 const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Props) => {
-  // const [t] = useTranslation()
+  const [t] = useTranslation()
 
   const getImage = () => {
       return { uri: RANDOM_CAR_URL }
@@ -40,7 +41,7 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
         </View>
         <View>
           <Text style={styles.bid} numberOfLines={1}>
-            Starting Bid
+          {t('screens.dashboard.bid_start')}
           </Text>
           <Text style={styles.title}>
             {!_.isNil(item.startingBid) ? item.startingBid + ' €': 'N/D'}

@@ -313,7 +313,7 @@ const DashboardScreen = ({}: Props) => {
 
   const onVehiclePress = (item: VehicleModel) => {
     console.log('onVehiclePress', item)
-    // NavigationManager.navigateSerieDetailsScreen({ data: item })
+    NavigationManager.navigateVehicleDetails({ data: item })
   }
 
   const onFavouritePress = async (item: VehicleModel) => {
@@ -328,7 +328,7 @@ const DashboardScreen = ({}: Props) => {
 
 
   useEffect(() => {
-    loadMoreItems(); // Carrega os primeiros itens ao montar o componente
+    loadMoreItems();
   }, []);
 
   const loadMoreItems = () => {
@@ -376,7 +376,7 @@ const DashboardScreen = ({}: Props) => {
           keyExtractor={keyVehicleExtractor}
           renderItem={renderVehicleItem}
           onEndReached={loadMoreItems}
-          onEndReachedThreshold={0.2} // Carrega mais quando chegar a 20% do final da lista
+          onEndReachedThreshold={0.2}
           ItemSeparatorComponent={renderVehicleSeparator}
           ListFooterComponent={<View style={styles.marginBottom} />}
         />

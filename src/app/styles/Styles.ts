@@ -34,7 +34,7 @@ const text = {
     },
     values: {
       ...Fonts?.SofiaPro.bold,
-      fontSize: 14,
+      fontSize: 16,
       color: Colors.primary,
     },
     link: {
@@ -63,9 +63,15 @@ const text = {
 
     ///// Updated version ///
     title: {
-    ...Fonts?.SofiaPro.bold,
-    fontSize: 20,
-    color: Colors.black,
+      ...Fonts?.SofiaPro.bold,
+      fontSize: 20,
+      color: Colors.black,
+    },
+
+    summary: {
+      ...Fonts?.SofiaPro.light,
+      fontSize: 15,
+      color: Colors.black,
     },
     
   };
