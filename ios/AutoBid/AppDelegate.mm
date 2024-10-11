@@ -28,4 +28,12 @@
 #endif
 }
 
+// react-native-screens
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+  #if !TARGET_OS_TV
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+  #endif // !TARGET_OS_TV
+}
+
 @end

@@ -1,3 +1,24 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Completeness */
+    "skipLibCheck": true,                                /* Skip type checking all .d.ts files. */
+
+    "baseUrl": "./",                                     /* Base directory to resolve non-absolute module names. */
+    "paths": {                                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "@utils/*": ["src/utils/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@data/*": ["src/data/*"],
+      "@assets/*": ["src/assets/*"],
+      "@app/*": ["src/app/*"],
+      "@src/*": ["src/*"],
+      "@root/*": ["*"]
+    },
+    
+    "esModuleInterop": true,
+  }
 }
