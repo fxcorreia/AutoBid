@@ -32,6 +32,12 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+		<array>
+			<string>Sofia-Pro-Light.ttf</string>
+			<string>Sofia-Pro-Medium.ttf</string>
+			<string>Sofia-Pro-Semi-Bold-.ttf</string>
+		</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>
