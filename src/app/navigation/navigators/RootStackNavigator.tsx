@@ -1,25 +1,60 @@
-import { RootStackParamList } from '@app/navigation/helpers/types/RootStackNavigationTypes'
-import DashboardScreen from '@app/screens/Dashboard/DashboardScreen'
-import ProfileScreen from '@app/screens/Profile/ProfileScreen'
-import SearchScreen from '@app/screens/SearchScreen/SearchScreen'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Colors from '@app/styles/Colors'
+import { CarLogo, IconFavouriteFullColored } from '@assets/svg'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import React from 'react'
-import { AppTabNavigator } from './AppTab'
+import { StyleSheet } from 'react-native'
+import DashboardStack from './DashboardStack'
+import FavouritesStack from './FavouritesStack'
 
-const RootStack = createNativeStackNavigator<RootStackParamList>()
+const Drawer = createDrawerNavigator();
 
 const RootStackNavigator = () => {
   return (
     <>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen name={'Dashboard'} component={DashboardScreen} />
-        <RootStack.Screen name={'Profile'} component={ProfileScreen} />
-        <RootStack.Screen name={'Search'} component={SearchScreen} />
-      </RootStack.Navigator>
-
+       <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          drawerStyle: styles.drawerStyle,
+          drawerItemStyle: styles.drawerItemStyle,
+          drawerActiveTintColor: Colors.primary,
+        }}
+      >
+        <Drawer.Screen
+          name={"Dashboard"}
+          component={DashboardStack}
+          options={{
+            drawerIcon: () => <CarLogo height={24} width={24}/>,
+          }}
+        />
+        <Drawer.Screen
+          name={"Favourites"}
+          component={FavouritesStack}
+          options={{
+            drawerIcon: () => <IconFavouriteFullColored />,
+          }}
+        />
+        {/* <Drawer.Screen
+          name={"Update PIN code"}
+          component={SettingsStack}
+          options={{
+            drawerIcon: () => <IconGear height={20} width={20} />,
+          }}
+        /> */}
+      </Drawer.Navigator> 
       {/* TODO: <AppLoading /> */}
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  drawerStyle: {
+    backgroundColor: Colors.white,
+    paddingTop: 77,
+  },
+  drawerItemStyle: {
+    borderBottomRightRadius: 25,
+    borderTopRightRadius: 25,
+  },
+});
 
 export default RootStackNavigator

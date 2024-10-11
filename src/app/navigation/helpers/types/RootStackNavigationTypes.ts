@@ -1,18 +1,19 @@
-import { RouteProp } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-export type DashboardScreenNavProps = undefined
-export type AppTabNavigationParams = undefined
+export type EmptyNavProps = undefined;
 
 export type SearchScreenNavProps = {
   value: string
 }
 
 export type RootStackParamList = {
-    AppTab: AppTabNavigationParams
-    Dashboard: DashboardScreenNavProps
-    Profile: DashboardScreenNavProps
+    Dashboard: EmptyNavProps
+    Profile: EmptyNavProps
     Search: SearchScreenNavProps
+    Favourite: EmptyNavProps;
 }
 
 export type RootStackParamListKeys = keyof RootStackParamList
+
+export type RootStackNavigationProp =
+  NativeStackNavigationProp<RootStackParamList>;

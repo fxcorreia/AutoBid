@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
@@ -5,21 +6,20 @@ import {
   useColorScheme
 } from 'react-native';
 
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
 import NavigationService from './navigation/helpers/NavigationService';
 import RootStackNavigator from './navigation/navigators/RootStackNavigator';
+import Colors from './styles/Colors';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 const App = () =>  {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  // const backgroundStyle = {
+  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  // };
 
   enableScreens()
 
@@ -32,13 +32,16 @@ const App = () =>  {
 
   return (
     <SafeAreaProvider>
-      <StatusBar  translucent backgroundColor={'transparent'} />
+      <StatusBar translucent backgroundColor={'transparent'} />
         <NavigationContainer
             ref={NavigationService.ref}
             onReady={onNavigationReady}
           >
-            <RootStackNavigator />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+
+              <RootStackNavigator />
             {/* TODO: <AppLoading />  */}
+            </GestureHandlerRootView>
           </NavigationContainer>
       
     </SafeAreaProvider>

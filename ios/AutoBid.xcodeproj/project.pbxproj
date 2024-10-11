@@ -15,6 +15,9 @@
 		7699B88040F8A987B510C191 /* libPods-AutoBid-AutoBidTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AutoBid-AutoBidTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		87592E22D04F28CC615CD02D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3891B34640EBDB77E7EDFBD0 /* PrivacyInfo.xcprivacy */; };
+		B288A5812CB8C138008085CF /* Sofia-Pro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B288A57E2CB8C138008085CF /* Sofia-Pro-Light.otf */; };
+		B288A5822CB8C138008085CF /* Sofia-Pro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B288A57F2CB8C138008085CF /* Sofia-Pro-Medium.otf */; };
+		B288A5832CB8C138008085CF /* Sofia-Pro-Semi-Bold-.otf in Resources */ = {isa = PBXBuildFile; fileRef = B288A5802CB8C138008085CF /* Sofia-Pro-Semi-Bold-.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,13 +42,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AutoBid/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = AutoBid/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-AutoBid-AutoBidTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AutoBid-AutoBidTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3891B34640EBDB77E7EDFBD0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = AutoBid/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3891B34640EBDB77E7EDFBD0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = AutoBid/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-AutoBid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoBid.debug.xcconfig"; path = "Target Support Files/Pods-AutoBid/Pods-AutoBid.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-AutoBid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoBid.release.xcconfig"; path = "Target Support Files/Pods-AutoBid/Pods-AutoBid.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-AutoBid-AutoBidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoBid-AutoBidTests.debug.xcconfig"; path = "Target Support Files/Pods-AutoBid-AutoBidTests/Pods-AutoBid-AutoBidTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-AutoBid.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AutoBid.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AutoBid/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AutoBid-AutoBidTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoBid-AutoBidTests.release.xcconfig"; path = "Target Support Files/Pods-AutoBid-AutoBidTests/Pods-AutoBid-AutoBidTests.release.xcconfig"; sourceTree = "<group>"; };
+		B288A57E2CB8C138008085CF /* Sofia-Pro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sofia-Pro-Light.otf"; path = "../src/assets/fonts/Sofia-Pro-Light.otf"; sourceTree = "<group>"; };
+		B288A57F2CB8C138008085CF /* Sofia-Pro-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sofia-Pro-Medium.otf"; path = "../src/assets/fonts/Sofia-Pro-Medium.otf"; sourceTree = "<group>"; };
+		B288A5802CB8C138008085CF /* Sofia-Pro-Semi-Bold-.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Sofia-Pro-Semi-Bold-.otf"; path = "../src/assets/fonts/Sofia-Pro-Semi-Bold-.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -89,6 +95,9 @@
 		13B07FAE1A68108700A75B9A /* AutoBid */ = {
 			isa = PBXGroup;
 			children = (
+				B288A57E2CB8C138008085CF /* Sofia-Pro-Light.otf */,
+				B288A57F2CB8C138008085CF /* Sofia-Pro-Medium.otf */,
+				B288A5802CB8C138008085CF /* Sofia-Pro-Semi-Bold-.otf */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -246,9 +255,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B288A5822CB8C138008085CF /* Sofia-Pro-Medium.otf in Resources */,
+				B288A5832CB8C138008085CF /* Sofia-Pro-Semi-Bold-.otf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				87592E22D04F28CC615CD02D /* PrivacyInfo.xcprivacy in Resources */,
+				B288A5812CB8C138008085CF /* Sofia-Pro-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
