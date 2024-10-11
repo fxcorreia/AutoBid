@@ -1,27 +1,23 @@
-import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
-  StatusBar,
-  useColorScheme
+  StatusBar
 } from 'react-native';
+import 'react-native-gesture-handler';
 
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import ReduxStore from '@data/redux/ReduxStore';
+import I18nConfig from '@i18n/I18nConfig';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
+import { Provider } from 'react-redux';
 import NavigationService from './navigation/helpers/NavigationService';
 import RootStackNavigator from './navigation/navigators/RootStackNavigator';
-import Colors from './styles/Colors';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import I18nConfig from '@i18n/I18nConfig';
 
 
 const App = () =>  {
   const routeName = NavigationService.getCurrentRoute()?.name
   const [mountNavigation, setMountNavigation] = useState<boolean>(false)
-
-  // const backgroundStyle = {
-  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  // };
 
   enableScreens()
 
@@ -40,6 +36,7 @@ const App = () =>  {
   }, [])
 
   return (
+    <Provider store={ReduxStore}>
     <SafeAreaProvider>
       <StatusBar translucent backgroundColor={'transparent'} />
         {mountNavigation && (<NavigationContainer
@@ -48,11 +45,11 @@ const App = () =>  {
           >
             <GestureHandlerRootView style={{ flex: 1 }}>
               <RootStackNavigator />
-            {/* TODO: <AppLoading />  */}
             </GestureHandlerRootView>
           </NavigationContainer>)}
       
     </SafeAreaProvider>
+   </Provider>
   );
 }
 

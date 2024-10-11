@@ -5,6 +5,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import DashboardStack from './DashboardStack'
 import FavouritesStack from './FavouritesStack'
+import AppLoading from '@app/screens/app/AppLoading'
 
 const Drawer = createDrawerNavigator();
 
@@ -41,7 +42,7 @@ const RootStackNavigator = () => {
           }}
         /> */}
       </Drawer.Navigator> 
-      {/* TODO: <AppLoading /> */}
+      <AppLoading />
     </>
   )
 }
