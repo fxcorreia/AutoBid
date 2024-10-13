@@ -23,8 +23,7 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
   }
 
   const isFavourite = () => {
-    return false
-    // return favouriteList.includes(item.id)
+    return item.favourite
   }
 
   return (

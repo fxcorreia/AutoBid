@@ -1,15 +1,24 @@
+import AppLoading from '@app/screens/app/AppLoading'
+import { initializeVehicles } from '@app/screens/dashboard/VehiclesSlice'
 import Colors from '@app/styles/Colors'
 import { CarLogo, IconFavouriteFullColored } from '@assets/svg'
+import { AppDispatch } from '@data/redux/ReduxStore'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
+import { useDispatch } from 'react-redux'
 import DashboardStack from './DashboardStack'
 import FavouritesStack from './FavouritesStack'
-import AppLoading from '@app/screens/app/AppLoading'
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
 const RootStackNavigator = () => {
+  const dispatch = useDispatch<AppDispatch>()
+
+  useEffect(() => {
+    dispatch(initializeVehicles())
+  }, [dispatch])
+
   return (
     <>
        <Drawer.Navigator
@@ -34,13 +43,6 @@ const RootStackNavigator = () => {
             drawerIcon: () => <IconFavouriteFullColored />,
           }}
         />
-        {/* <Drawer.Screen
-          name={"Update PIN code"}
-          component={SettingsStack}
-          options={{
-            drawerIcon: () => <IconGear height={20} width={20} />,
-          }}
-        /> */}
       </Drawer.Navigator> 
       <AppLoading />
     </>
@@ -56,6 +58,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
     borderTopRightRadius: 25,
   },
-});
+})
 
 export default RootStackNavigator

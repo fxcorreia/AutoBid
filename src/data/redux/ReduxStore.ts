@@ -10,5 +10,7 @@ const ReduxStore = configureStore({
     }),
 })
 
-
 export default ReduxStore
+export type RootState = ReturnType<typeof ReduxStore.getState>
+export type AppDispatch = typeof ReduxStore.dispatch
+export type AppStore = typeof ReduxStore

@@ -20,10 +20,7 @@ type Props = {
   titleStyle?: StyleProp<TextStyle>
   hasBackButton?: boolean
   hasMenu?: boolean
-  hasFavoutire?: boolean
-  isFavourite?: boolean
   hasLogo?: boolean
-  onFavouritePress?: () => void
 }
 
 const Header = ({
@@ -32,10 +29,7 @@ const Header = ({
   titleStyle,
   hasBackButton,
   hasMenu,
-  hasFavoutire,
-  isFavourite,
   hasLogo,
-  onFavouritePress,
 }: Props) => {
   const navigation = useNavigation()
   const onBackPress = () => {
@@ -65,15 +59,6 @@ const Header = ({
         <Text style={[styles.title, titleStyle]}>{title}</Text>
       </View>
       <View style={styles.viewRight}>
-        {hasFavoutire && (
-          <TouchableOpacity style={styles.viewButtons} onPress={onFavouritePress}>
-            {isFavourite ? (
-              <IconFavouriteFullColored height={20} />
-            ) : (
-              <IconFavouriteEmptyColored height={20} />
-            )}
-          </TouchableOpacity>
-        )}
       </View>
     </View>
   )

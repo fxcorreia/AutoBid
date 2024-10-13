@@ -11,13 +11,6 @@ const Colors = {
     red: "#ff0000",
     inactive: "#BCBCBC",
     grey:"#A6A6A6"
-    // transparent: '#00000000',
-    // black: '#000000',
-    // white: '#FFFFFF',
-    // primary: '#f9f9f9',
-    // secondary: '#8ba272',
-    // tertiary: '#393939',
-    // grey: '#686868'
   }
   
   export default Colors

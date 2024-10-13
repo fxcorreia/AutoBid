@@ -1,6 +1,6 @@
-import { RootState } from '@data/redux/RootReducer'
 import { Action, Dispatch, ThunkAction } from '@reduxjs/toolkit'
 import ReduxStore from './ReduxStore'
+import { RootState } from './RootReducer'
 
 export type AppReduxStore = typeof ReduxStore
 

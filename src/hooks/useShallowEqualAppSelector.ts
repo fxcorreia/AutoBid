@@ -1,6 +1,6 @@
 import { RootState } from '@data/redux/RootReducer'
+import useAppSelector from '@hooks/useAppSelector'
 import { shallowEqual } from 'react-redux'
-import useAppSelector from './useAppSelector'
 
 const useShallowEqualAppSelector = <TSelected = unknown>(
   selector: (state: RootState) => TSelected,

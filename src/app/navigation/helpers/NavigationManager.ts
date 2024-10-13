@@ -1,32 +1,27 @@
 import NavigationService from './NavigationService'
-import { SearchScreenNavProps, VehicleDetailsNavProps } from './types/RootStackNavigationTypes'
+import { VehicleDetailsNavProps } from './types/RootStackNavigationTypes'
 
 const navigateDashboard = () => {
-  NavigationService.navigate('Dashboard');
-}
-
-const navigateProfile = () => {
-  NavigationService.navigate('Profile');
+  NavigationService.navigate('Dashboard')
 }
 
 const navigateFavourite = () => {
-  NavigationService.navigate('Favourite');
+  NavigationService.navigate('Favourite')
 }
 
-const navigateSearch = (params: SearchScreenNavProps) => {
-  NavigationService.navigate('Search', params);
+const navigateFilter = () => {
+  NavigationService.navigate('Filter')
 }
 
 const navigateVehicleDetails = (params: VehicleDetailsNavProps) => {
-  NavigationService.navigate('VehicleDetails', params);
+  NavigationService.navigate('VehicleDetails', params)
 }
 
 const NavigationManager = {
     navigateDashboard,
-    navigateProfile,
-    navigateSearch,
     navigateFavourite,
-    navigateVehicleDetails
+    navigateVehicleDetails,
+    navigateFilter
 }
 
 export default NavigationManager
