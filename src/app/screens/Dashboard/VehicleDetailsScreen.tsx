@@ -2,9 +2,11 @@ import Header from '@app/components/header/Header'
 import { RootStackParamList } from '@app/navigation/helpers/types/RootStackNavigationTypes'
 import Colors from '@app/styles/Colors'
 import Styles from '@app/styles/Styles'
+import Images from '@assets/images'
 import { IconAuction, IconCalendar, IconEngine, IconEuro, IconFuel, IconMileage } from '@assets/svg'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import React from 'react'
+import moment from 'moment'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Image,
@@ -18,22 +20,38 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'VehicleDetails'> & {}
 
-const RANDOM_CAR_URL = 'https://loremflickr.com/240/180/car'
 
 const VehicleDetailsScreen = ({ route }: Props) => {
   const [t] = useTranslation()
   const vehicle = route.params.data
+  const [timeRemaining, setTimeRemaining] = useState('')
 
-  const getImage = () => {
-    return { uri: RANDOM_CAR_URL }
-  }
+  useEffect(() => {
+    const calculateTimeRemaining = () => {
+      const auctionDate = moment(vehicle.auctionDateTime, "YYYY/MM/DD HH:mm:ss")
+      const currentDate = moment()
+
+      const duration = moment.duration(auctionDate.diff(currentDate))
+      if (duration.asSeconds() > 0) {
+        const days = Math.floor(duration.asDays())
+        const hours = Math.floor(duration.hours())
+        setTimeRemaining(`${days} days and ${hours}h`)
+      } else {
+        setTimeRemaining(t('screens.vehicleDetails.auction_started'))
+      }
+    }
+
+    calculateTimeRemaining()
+    const intervalId = setInterval(calculateTimeRemaining, 3600000)
+    return () => clearInterval(intervalId)
+  }, [vehicle.auctionDateTime])
 
   const veicleSpecs = [
       { id: '1', icon: <IconCalendar height={30} />, label: t('screens.vehicleDetails.year'), value: vehicle.year },
       { id: '2', icon: <IconMileage height={30} />, label: t('screens.vehicleDetails.mileage'), value: vehicle.mileage },
       { id: '3', icon: <IconFuel height={30} />, label: t('screens.vehicleDetails.fuel'), value: vehicle.fuel },
       { id: '4', icon: <IconEngine height={30} />, label: t('screens.vehicleDetails.engine'), value: vehicle.engineSize },
-      { id: '5', icon: <IconAuction height={30} />, label: t('screens.vehicleDetails.auction_date'), value: vehicle.auctionDateTime },
+      { id: '5', icon: <IconAuction height={30} />, label: t('screens.vehicleDetails.auction_date'), value: timeRemaining },
       { id: '6', icon: <IconEuro height={30} />, label: t('screens.vehicleDetails.bid_start'), value: vehicle.startingBid },
   ]
 
@@ -45,7 +63,7 @@ const VehicleDetailsScreen = ({ route }: Props) => {
           colors={[Colors.secondary, Colors.primary]}
           style={styles.imageBackgroundContainer}
         >
-          <Image style={styles.image} source={getImage()} resizeMode={'contain'} />
+          <Image style={styles.image} source={Images.carPlaceholder} resizeMode={'contain'} />
         </LinearGradient>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.vehicleSpecs}>
@@ -98,11 +116,11 @@ const styles = StyleSheet.create({
     marginTop:40,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     
   },
   item: {
-    width: '30%',
+    width: '33%',
     marginVertical: 16,
     alignItems: 'center',
   },
@@ -114,7 +132,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     textAlign: 'center',
     ...Styles.text.values,
-    textTransform:'uppercase'
   },
   summaryContainer:{
     paddingVertical:30,
