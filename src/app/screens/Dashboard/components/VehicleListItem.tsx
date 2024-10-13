@@ -1,6 +1,7 @@
 import Colors from '@app/styles/Colors'
 import Shadows from '@app/styles/Shadows'
 import Styles from '@app/styles/Styles'
+import Images from '@assets/images'
 import { IconFavouriteEmpty, IconFavouriteFull } from '@assets/svg'
 import { VehicleModel } from '@data/model/VehicleModel'
 import _ from 'lodash'
@@ -14,13 +15,9 @@ type Props = {
   onFavouritePress: (item: VehicleModel) => void
   favouriteList?: number[]
 }
-const RANDOM_CAR_URL = 'https://loremflickr.com/240/180/car'
+
 const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Props) => {
   const [t] = useTranslation()
-
-  const getImage = () => {
-      return { uri: RANDOM_CAR_URL }
-  }
 
   const isFavourite = () => {
     return item.favourite
@@ -28,7 +25,7 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
 
   return (
     <TouchableOpacity style={styles.mainContainer} onPress={() => onPress(item)}>
-      <Image style={styles.image} source={getImage()} resizeMode={'stretch'} />
+      <Image style={styles.image} source={Images.carPlaceholder} resizeMode={'stretch'} />
       <View style={styles.vehicleDetails}>
         <View>
           <Text style={styles.title} numberOfLines={1}>
