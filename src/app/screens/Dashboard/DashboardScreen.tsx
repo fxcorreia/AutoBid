@@ -2,14 +2,15 @@ import Header from '@app/components/header/Header'
 import NavigationManager from '@app/navigation/helpers/NavigationManager'
 import { RootStackParamList } from '@app/navigation/helpers/types/RootStackNavigationTypes'
 import Colors from '@app/styles/Colors'
-import { IconFilter, IconFilterFull } from '@assets/svg'
+import Styles from '@app/styles/Styles'
+import { IconFilter } from '@assets/svg'
 import { VehicleModel } from '@data/model/VehicleModel'
 import useShallowEqualAppSelector from '@hooks/useShallowEqualAppSelector'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { isEmpty } from 'lodash'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ActivityIndicator, FlatList, ListRenderItemInfo, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, FlatList, ListRenderItemInfo, StyleSheet, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch } from 'react-redux'
@@ -23,6 +24,7 @@ const DashboardScreen = ({}: Props) => {
   const [t] = useTranslation()
   const vehicleList = useShallowEqualAppSelector((state) => state.vehicles.vehicleList)
   const filteredVehicles = useShallowEqualAppSelector((state) => state.vehicles.filteredVehicles)
+  const appliedFilters = useShallowEqualAppSelector((state) => state.vehicles.appliedFilters)
 
   const [data, setData] = useState<VehicleModel[]>([])
   const [page, setPage] = useState<number>(0)
@@ -35,6 +37,12 @@ const DashboardScreen = ({}: Props) => {
 
   const onFavouritePress = async (item: VehicleModel) => {
     dispatch(toggleFavourite(item))
+  }
+
+  const hasActiveFilters = () => {
+    return Object.values(appliedFilters).some((value) => {
+      return value !== null && value !== undefined
+    })
   }
   
   const loadMoreItems = useCallback((reset = false) => {
@@ -52,10 +60,13 @@ const DashboardScreen = ({}: Props) => {
   }, [filteredVehicles, vehicleList, page, loading])
 
   useEffect(() => {
-    setPage(0)
-    loadMoreItems(true)
+    if (hasActiveFilters() && isEmpty(filteredVehicles)) {
+      setData([])
+    } else {
+      setPage(0)
+      loadMoreItems(true)
+    }
   }, [filteredVehicles, vehicleList])
-
 
   const keyVehicleExtractor = (item: VehicleModel, index: number): string => {
     return `${item.auctionDateTime}+${index}`
@@ -74,7 +85,7 @@ const DashboardScreen = ({}: Props) => {
   const onFilterPress = () => {
     NavigationManager.navigateFilter()
   }
-
+  
   return (
     <SafeAreaView edges={['top']} style={styles.mainContainer}>
       <LinearGradient colors={[Colors.white, Colors.gradientEnd]} style={styles.mainContainer}>
@@ -86,7 +97,7 @@ const DashboardScreen = ({}: Props) => {
         />
         <View style={styles.searchContainer}>
           <TouchableOpacity style={styles.filterContainer} onPress={onFilterPress}>
-              {!isEmpty(filteredVehicles) && <View style={styles.activeFilters}/>}
+              {hasActiveFilters() && <View style={styles.activeFilters}/>}
             <IconFilter height={24}/>
           </TouchableOpacity> 
         </View>
@@ -142,7 +153,18 @@ const styles = StyleSheet.create({
     height:12,
     width:12, 
     borderRadius:6
-  }
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  emptyText: {
+    ...Styles.text.frontTitle,
+    color: Colors.primary,
+    textAlign: 'center',
+  },
 })
 
 export default DashboardScreen

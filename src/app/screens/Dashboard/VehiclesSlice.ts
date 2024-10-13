@@ -112,6 +112,10 @@ const VehiclesSlice = createSlice({
         v.id === vehicle.id ? updatedVehicle : v
       )
 
+      state.filteredVehicles = state.filteredVehicles.map(v =>
+        v.id === vehicle.id ? updatedVehicle : v
+      );
+
       AsyncStorage.setVehicleList(state.vehicleList)
     
       if (isFavourite) {
