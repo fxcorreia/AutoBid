@@ -37,7 +37,6 @@ const FilterScreen = ({}: Props) => {
   const [itemsModel, setItemsModel] = useState<DropdownModel[]>([])
   const [minBid, setMinBid] = useState<string>()
   const [maxBid, setMaxBid] = useState<string>()
-  const [favouriteCheckbox, setFavouriteCheckbox] = useState<boolean>(false)
 
   const vehicleList = useShallowEqualAppSelector((state) => state.vehicles.vehicleList)
   const appliedFilters = useShallowEqualAppSelector((state) => state.vehicles.appliedFilters)
@@ -70,7 +69,6 @@ const FilterScreen = ({}: Props) => {
       model: selectedValueModel,
       minBid: minBid ? parseFloat(minBid) : undefined,
       maxBid: maxBid ? parseFloat(maxBid) : undefined,
-      favourite: favouriteCheckbox,
     }
 
     dispatch(setFilteredVehicles(filter))
@@ -83,7 +81,6 @@ const FilterScreen = ({}: Props) => {
     setSelectedValueModel(null)
     setMinBid(undefined)
     setMaxBid(undefined)
-    setFavouriteCheckbox(false)
 
     dispatch(clearAppliedFilters())
     dispatch(resetFilteredVehicles())
@@ -96,7 +93,6 @@ const FilterScreen = ({}: Props) => {
     setSelectedValueModel(appliedFilters.model)
     setMinBid(appliedFilters.minBid ? appliedFilters.minBid.toString() : undefined)
     setMaxBid(appliedFilters.maxBid ? appliedFilters.maxBid.toString() : undefined)
-    setFavouriteCheckbox(appliedFilters.favourite)
     setItemsMake(getUniqueMake(vehicleList))
   }, [])
 
@@ -191,19 +187,6 @@ const FilterScreen = ({}: Props) => {
             />
           </View>
         </View>  
-        <View style={[styles.checkboxContainer, styles.marginSeparator]}>
-          <CheckBox
-            disabled={false}
-            value={favouriteCheckbox}
-            onValueChange={(newValue) => setFavouriteCheckbox(newValue)}
-            onAnimationType={'bounce'}
-            animationDuration={0.2}
-            onCheckColor={Colors.secondary}
-            onFillColor={Colors.primary}
-            onTintColor={Colors.primary}
-          />
-          <Text style={[styles.bidInput, {paddingLeft:10}]}>{t('screens.filter.favourites')}</Text>
-        </View>
         <ActionButton label='Apply' onPress={onApplyPress} style={[styles.button, styles.marginSeparator]}/> 
         <TouchableOpacity style={[styles.clearContainer, styles.marginSeparator]} onPress={onClearFiltersPress}>
           <Text style={styles.clearLabel}>{t('screens.filter.clear_filter')}</Text>
@@ -249,10 +232,6 @@ const styles = StyleSheet.create({
   dropdown: {
     backgroundColor: Colors.primary_30Pct, 
     borderColor:'transparent'
-  },
-  checkboxContainer:{
-    flexDirection:'row',
-    alignItems:'center',
   },
   button:{
     alignSelf:'center', 

@@ -9,7 +9,6 @@ export type FilterVehicles = {
   model: string[] | null ,
   minBid: number | undefined,
   maxBid: number | undefined,
-  favourite: boolean,
 }
 
 type VehiclesSliceState = {
@@ -28,7 +27,6 @@ const initialState: VehiclesSliceState = {
     model: null,
     minBid: undefined,
     maxBid: undefined,
-    favourite: false
   }
 }
 
@@ -84,9 +82,8 @@ const filterVehicles = (vehicles: VehicleModel[], filters: FilterVehicles): Vehi
 
     const matchesMinBid = filters.minBid === undefined || vehicle.startingBid >= filters.minBid
     const matchesMaxBid = filters.maxBid === undefined || vehicle.startingBid <= filters.maxBid
-    const matchesFavourite = filters.favourite === null || vehicle.favourite === filters.favourite
 
-    return matchesMake && matchesModel && matchesMinBid && matchesMaxBid && matchesFavourite
+    return matchesMake && matchesModel && matchesMinBid && matchesMaxBid
   })
 }
 
@@ -137,7 +134,6 @@ const VehiclesSlice = createSlice({
         model: null,
         minBid: undefined,
         maxBid: undefined,
-        favourite: false
       }
     },
     resetFilteredVehicles(state) {
