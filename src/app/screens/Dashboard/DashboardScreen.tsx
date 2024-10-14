@@ -107,7 +107,7 @@ const DashboardScreen = ({}: Props) => {
           keyExtractor={keyVehicleExtractor}
           renderItem={renderVehicleItem}
           onEndReached={() => loadMoreItems()}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0.2}
           ItemSeparatorComponent={renderVehicleSeparator}
           ListFooterComponent={loading ? <ActivityIndicator size="small" color={Colors.primary} /> : null}
         />
