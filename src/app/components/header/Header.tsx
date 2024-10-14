@@ -1,6 +1,6 @@
 import NavigationService from '@app/navigation/helpers/NavigationService'
 import Styles from '@app/styles/Styles'
-import { CarLogo, IconArrowBack, IconFavouriteEmptyColored, IconFavouriteFullColored, IconMenu } from '@assets/svg'
+import { CarLogo, IconArrowBack, IconMenu } from '@assets/svg'
 
 import { DrawerActions, useNavigation } from '@react-navigation/native'
 import React, { memo, useCallback } from 'react'

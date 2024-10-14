@@ -13,10 +13,9 @@ type Props = {
   item: VehicleModel
   onPress: (item: VehicleModel) => void
   onFavouritePress: (item: VehicleModel) => void
-  favouriteList?: number[]
 }
 
-const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Props) => {
+const VehicleListItem = ({ item, onPress, onFavouritePress }: Props) => {
   const [t] = useTranslation()
 
   const isFavourite = useMemo(() => item.favourite, [item.favourite])
@@ -26,7 +25,7 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
   const handleFavouritePress = useCallback(() => onFavouritePress(item), [onFavouritePress, item])
 
   return (
-    <TouchableOpacity style={styles.mainContainer} onPress={handlePress}>
+    <TouchableOpacity style={styles.mainContainer} onPress={handlePress} testID="vehicle-list-item">
       <Image style={styles.image} source={Images.carPlaceholder} resizeMode={'stretch'} />
       <View style={styles.vehicleDetails}>
         <View>
@@ -47,7 +46,7 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
         </View>
       </View>
       <TouchableOpacity style={styles.favouriteContainer} onPress={handleFavouritePress}>
-        {isFavourite ? <IconFavouriteFull /> : <IconFavouriteEmpty />}
+        {isFavourite ? <IconFavouriteFull testID="icon-favourite-full"/> : <IconFavouriteEmpty testID="icon-favourite-empty" />}
       </TouchableOpacity>
     </TouchableOpacity>
   )
