@@ -1,6 +1,5 @@
 # AutoBid
 
-## Overview
 This project is a React Native application designed for displaying vehicle results with filtering options. Users can view a list of vehicles, mark them as favorites, and filter the results based on specific criteria. The application utilizes lazy loading to optimize performance and Redux Toolkit for state management.
 
 ## Problem Statement
