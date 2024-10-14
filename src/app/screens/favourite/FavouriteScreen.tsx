@@ -5,19 +5,27 @@ import Colors from '@app/styles/Colors'
 import { VehicleModel } from '@data/model/VehicleModel'
 import { RootState } from '@data/redux/RootReducer'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import React from 'react'
-import { FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { FlatList, ListRenderItemInfo, StyleSheet, Text, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleFavourite } from '../dashboard/VehiclesSlice'
 import VehicleListItem from '../dashboard/components/VehicleListItem'
+import Styles from '@app/styles/Styles'
+import { useTranslation } from 'react-i18next'
+import { isEmpty } from 'lodash'
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Favourite'> & {}
 
 const FavouriteScreen = ({}: Props) => {
   const dispatch = useDispatch()
+  const [t] = useTranslation()
+  const [data, setData] = useState<VehicleModel[]>([])
+  const [page, setPage] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
+  const ITEMS_PER_PAGE = 10
 
   const favouriteList = useSelector((state: RootState) => state.vehicles.favouriteList)
 
@@ -45,24 +53,46 @@ const FavouriteScreen = ({}: Props) => {
 
   const renderVehicleSeparator = () => <View style={styles.itemSeparator} />
 
+  const loadMoreItems = useCallback((reset = false) => {
+    if (loading) return
+
+    setLoading(true)    
+    const startIndex = reset ? 0 : page * ITEMS_PER_PAGE
+    const endIndex = startIndex + ITEMS_PER_PAGE
+    const newItems = favouriteList.slice(startIndex, endIndex)
+
+    setData(prevData => reset ? newItems : [...prevData, ...newItems])
+    setPage(prevPage => prevPage + 1)
+    setLoading(false)
+  }, [favouriteList, page, loading])
+
+  useEffect(() => {
+    if (isEmpty(favouriteList)) {
+      setData([])
+    } else {
+      setPage(0)
+      loadMoreItems(true)
+    }
+  }, [favouriteList])
+
   return (
     <SafeAreaView edges={['top']} style={styles.mainContainer}>
       <LinearGradient colors={[Colors.white, Colors.gradientEnd]} style={styles.mainContainer}>
         <Header
-            title={'Favourites'}
+            title={t('screens.favourites.favourites')}
             titleStyle={styles.title}
             hasLogo
             hasMenu
           />
         <View style={styles.listContainer}/>
-        
+        <Text style={styles.counterLabel}>{t('screens.favourites.favourites_number')} {favouriteList.length}</Text>
         <FlatList
-          data={favouriteList}
+          data={data}
           style={styles.flatList}
           keyExtractor={keyVehicleExtractor}
           renderItem={renderVehicleItem}
-          // onEndReached={loadMoreItems}
-          // onEndReachedThreshold={0.2}
+          onEndReached={() => loadMoreItems()}
+          onEndReachedThreshold={0.2}
           ItemSeparatorComponent={renderVehicleSeparator}
           ListFooterComponent={<View style={styles.marginBottom} />}
         />
@@ -95,6 +125,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     alignItems: 'center',
   },
+  counterLabel:{
+    ...Styles.text.values,
+    color: Colors.primary,
+    paddingLeft: 16,
+    paddingBottom:10
+  }
 })
 
 export default FavouriteScreen

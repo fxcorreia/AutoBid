@@ -37,6 +37,7 @@ const FilterScreen = ({}: Props) => {
   const [itemsModel, setItemsModel] = useState<DropdownModel[]>([])
   const [minBid, setMinBid] = useState<string>()
   const [maxBid, setMaxBid] = useState<string>()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const vehicleList = useShallowEqualAppSelector((state) => state.vehicles.vehicleList)
   const appliedFilters = useShallowEqualAppSelector((state) => state.vehicles.appliedFilters)
@@ -64,6 +65,12 @@ const FilterScreen = ({}: Props) => {
   }
   
   const onApplyPress = () => {
+    if (minBid && maxBid && parseFloat(minBid) > parseFloat(maxBid)) {
+      setErrorMessage(t('screens.filter.bid_value_error'))
+      return
+    }
+    setErrorMessage(null)
+
     const filter: FilterVehicles  = {
       make: selectedValueMake,
       model: selectedValueModel,
@@ -186,7 +193,10 @@ const FilterScreen = ({}: Props) => {
               placeholderTextColor={Colors.primary}
             />
           </View>
-        </View>  
+        </View> 
+        {errorMessage && (
+          <Text style={styles.errorLabel}>{errorMessage}</Text>
+        )} 
         <ActionButton label='Apply' onPress={onApplyPress} style={[styles.button, styles.marginSeparator]}/> 
         <TouchableOpacity style={[styles.clearContainer, styles.marginSeparator]} onPress={onClearFiltersPress}>
           <Text style={styles.clearLabel}>{t('screens.filter.clear_filter')}</Text>
@@ -244,7 +254,12 @@ const styles = StyleSheet.create({
   },
   clearLabel:{
     ...Styles.text.values,
-  }
+  },
+  errorLabel: {
+    ...Styles.text.smallText,
+    color: Colors.red,
+    marginTop: 10,
+  },
 })
 
 export default FilterScreen

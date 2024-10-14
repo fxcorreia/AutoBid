@@ -24,7 +24,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'VehicleDetails'> & {}
 const VehicleDetailsScreen = ({ route }: Props) => {
   const [t] = useTranslation()
   const vehicle = route.params.data
-  const [timeRemaining, setTimeRemaining] = useState('')
+  const [timeRemaining, setTimeRemaining] = useState<string>('')
 
   useEffect(() => {
     const calculateTimeRemaining = () => {

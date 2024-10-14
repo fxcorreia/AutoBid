@@ -68,17 +68,17 @@ const DashboardScreen = ({}: Props) => {
     }
   }, [filteredVehicles, vehicleList])
 
-  const keyVehicleExtractor = (item: VehicleModel, index: number): string => {
+  const keyVehicleExtractor = useCallback((item: VehicleModel, index: number): string => {
     return `${item.auctionDateTime}+${index}`
-  }
+  },[])
 
-  const renderVehicleItem = (data: ListRenderItemInfo<VehicleModel>) => (
+  const renderVehicleItem = useCallback( (data: ListRenderItemInfo<VehicleModel>) => (
     <VehicleListItem
       item={data.item}
       onPress={onVehiclePress}
       onFavouritePress={onFavouritePress}
     />
-  )
+  ), [onVehiclePress, onFavouritePress])
 
   const renderVehicleSeparator = () => <View style={styles.itemSeparator} />
 

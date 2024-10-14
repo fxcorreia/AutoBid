@@ -1,7 +1,6 @@
-
 import Colors from '@app/styles/Colors'
 import Styles from '@app/styles/Styles'
-import React from 'react'
+import React, { memo, useCallback } from 'react'
 import {
     StyleProp,
     StyleSheet,
@@ -18,13 +17,15 @@ type Props = {
     onPress: () => void
 }
 
-const ActionButton = ({ label, style, labelStyle, onPress}: Props) => {
+const ActionButton = memo(({  label, style, labelStyle, onPress}: Props) => {
+  const handlePress = useCallback(onPress, [onPress])
+
   return (
-    <TouchableOpacity style={[styles.mainContainer, style]} onPress={onPress}>
+    <TouchableOpacity testID='action_button' style={[styles.mainContainer, style]} onPress={handlePress}>
         <Text style={[styles.label, labelStyle]}>{label}</Text>
     </TouchableOpacity>
   )
-}
+})
 
 const styles = StyleSheet.create({
   mainContainer: {

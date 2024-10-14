@@ -3,7 +3,7 @@ import Styles from '@app/styles/Styles'
 import { CarLogo, IconArrowBack, IconFavouriteEmptyColored, IconFavouriteFullColored, IconMenu } from '@assets/svg'
 
 import { DrawerActions, useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { memo, useCallback } from 'react'
 import {
   StyleProp,
   StyleSheet,
@@ -23,46 +23,41 @@ type Props = {
   hasLogo?: boolean
 }
 
-const Header = ({
-  title,
-  style,
-  titleStyle,
-  hasBackButton,
-  hasMenu,
-  hasLogo,
-}: Props) => {
-  const navigation = useNavigation()
-  const onBackPress = () => {
-    NavigationService.goBack()
-  }
+const Header = memo(({ title, style, titleStyle, hasBackButton, hasMenu, hasLogo }: Props) => {
 
-  const openDrawer = () => {
+  const navigation = useNavigation()
+  
+  const onBackPress = useCallback(() => {
+    NavigationService.goBack()
+  }, [])
+
+  const openDrawer = useCallback(() => {
     navigation.dispatch(DrawerActions.openDrawer())
-  }
+  }, [navigation])
 
   return (
     <View style={[styles.mainContainer, style]}>
       <View style={styles.viewLeft}>
         {hasBackButton && (
-          <TouchableOpacity style={styles.viewButtons} onPress={onBackPress}>
-            <IconArrowBack height={20} />
+          <TouchableOpacity style={styles.viewButtons} onPress={onBackPress} testID="back-button" >
+            <IconArrowBack height={20} testID="icon-arrow-back"/>
           </TouchableOpacity>
         )}
         {hasMenu && (
-          <TouchableOpacity style={styles.viewButtons} onPress={openDrawer}>
-            <IconMenu height={30} width={30} />
+          <TouchableOpacity style={styles.viewButtons} onPress={openDrawer} testID="menu-button">
+            <IconMenu height={30} width={30} testID="icon-menu"/>
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.viewCenter}>
-        {hasLogo && <CarLogo height={30} width={30} />}
+        {hasLogo && <CarLogo height={30} width={30} testID="car-logo" />}
         <Text style={[styles.title, titleStyle]}>{title}</Text>
       </View>
       <View style={styles.viewRight}>
       </View>
     </View>
   )
-}
+})
 
 const styles = StyleSheet.create({
   mainContainer: {

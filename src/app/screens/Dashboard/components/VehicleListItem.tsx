@@ -5,7 +5,7 @@ import Images from '@assets/images'
 import { IconFavouriteEmpty, IconFavouriteFull } from '@assets/svg'
 import { VehicleModel } from '@data/model/VehicleModel'
 import _ from 'lodash'
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
@@ -19,12 +19,14 @@ type Props = {
 const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Props) => {
   const [t] = useTranslation()
 
-  const isFavourite = () => {
-    return item.favourite
-  }
+  const isFavourite = useMemo(() => item.favourite, [item.favourite])
+
+  const handlePress = useCallback(() => onPress(item), [onPress, item])
+
+  const handleFavouritePress = useCallback(() => onFavouritePress(item), [onFavouritePress, item])
 
   return (
-    <TouchableOpacity style={styles.mainContainer} onPress={() => onPress(item)}>
+    <TouchableOpacity style={styles.mainContainer} onPress={handlePress}>
       <Image style={styles.image} source={Images.carPlaceholder} resizeMode={'stretch'} />
       <View style={styles.vehicleDetails}>
         <View>
@@ -44,8 +46,8 @@ const VehicleListItem = ({ item, onPress, onFavouritePress, favouriteList }: Pro
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.favouriteContainer} onPress={() => onFavouritePress(item)}>
-        {isFavourite() ? <IconFavouriteFull /> : <IconFavouriteEmpty />}
+      <TouchableOpacity style={styles.favouriteContainer} onPress={handleFavouritePress}>
+        {isFavourite ? <IconFavouriteFull /> : <IconFavouriteEmpty />}
       </TouchableOpacity>
     </TouchableOpacity>
   )

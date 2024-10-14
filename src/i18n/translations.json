@@ -23,7 +23,12 @@
             "bid":"Bid",
             "one_make":"Availabe if just one make is selected!",
             "favourites":"Favourites",
-            "clear_filter":"Clear filters"
+            "clear_filter":"Clear filters",
+            "bid_value_error":"Minimum bid cannot be higher than maximum bid"
+          },
+          "favourites":{
+            "favourites":"Favourites",
+            "favourites_number":"Number of favourites:"
           }
         }
       }

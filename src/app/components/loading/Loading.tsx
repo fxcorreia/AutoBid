@@ -1,5 +1,6 @@
 import Colors from '@app/styles/Colors'
 import * as React from 'react'
+import { memo } from 'react'
 import { ActivityIndicator, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 
 const LOADING_SIZE = 35
 
-const Loading = ({ style, showLoading, color, size }: Props) => {
+const Loading = memo(({ style, showLoading, color, size }: Props) => {
   return (
     <View style={[styles.container, style]}>
       <ActivityIndicator
@@ -21,7 +22,7 @@ const Loading = ({ style, showLoading, color, size }: Props) => {
       />
     </View>
   )
-}
+})
 
 const styles = StyleSheet.create({
   container: {
